@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import Home from '../views/Home'
 import User from '../views/User'
+import OtherPage from '../views/Other'
 
 const routes = [
     {
@@ -16,6 +17,10 @@ const routes = [
     {
         path: "/user",
         component: User
+    },
+    {
+        path: "/other",
+        component: OtherPage
     }
 ];
 
