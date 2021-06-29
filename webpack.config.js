@@ -1,6 +1,8 @@
 let path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const {
+    CleanWebpackPlugin
+} = require('clean-webpack-plugin')
 const friendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 module.exports = {
@@ -24,7 +26,11 @@ module.exports = {
     module: {
         rules: [
             // JavaScript
-            { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "babel-loader"
+            },
             {
                 test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
                 type: 'asset/resource',
@@ -34,14 +40,17 @@ module.exports = {
                 type: 'asset/inline',
             },
             {
-                test: /\.(scss|css)$/,
+                test: /\.css$/,
                 use: ['style-loader', {
                     loader: 'css-loader',
-                    options: {
-                        importLoaders: 1,
-                    },
                 }, 'postcss-loader'],
             },
+            {
+                test: /\.scss$/,
+                use: ['style-loader', {
+                    loader: 'css-loader',
+                }, 'postcss-loader', 'sass-loader']
+            }
         ],
     },
     plugins: [

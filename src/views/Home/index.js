@@ -13,8 +13,8 @@ export default class Home extends React.Component {
         return (
             <themeContext.Provider value="blue">
                 <div>
-                    <h1>这是home页面</h1>
-                    <h2>{this.state.count}</h2>
+                    <h1 className="title" >这是home页面</h1>
+                    <h2 className="title2">{this.state.count}</h2>
                     <button onClick={() => this.add()}>增加</button>
                     <button onClick={() => this.reduce()}>减少</button>
                     <Link to="/user">user</Link>

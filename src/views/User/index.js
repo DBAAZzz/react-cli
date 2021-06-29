@@ -1,5 +1,6 @@
 import React from 'react'
 import store from '../../store'
+import './style.scss'
 
 function incrementAsync() {
     return (dispatch) => {
