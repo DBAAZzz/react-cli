@@ -5,14 +5,16 @@ import {
     Switch,
     Redirect
 } from 'react-router-dom';
-import Home from '../views/Home'
-import User from '../views/User'
-import OtherPage from '../views/Other'
+import loadable from '@/utils/loadable'
+
+const Change = loadable(() => import('@/views/Change'))
+const User = loadable(() => import('@/views/User'))
+const OtherPage = loadable(() => import('@/views/Other'))
 
 const routes = [
     {
-        path: "/home",
-        component: Home
+        path: "/change",
+        component: Change
     },
     {
         path: "/user",
@@ -39,8 +41,8 @@ function RouteWithSubRoutes(route) {
 const BasicRoute = () => (
     <Router>
         <Switch>
-            <Route path='/' exact render={() => (
-                <Redirect to='/home' />
+            <Route exact path='/' render={() => (
+                <Redirect to='/change' />
             )} />
             {routes.map((route, i) => (
                 <RouteWithSubRoutes key={i} {...route} />

@@ -9,11 +9,11 @@ let ButtonComponent = (props) => {
     return (
         <themeContext.Consumer>
             {
-                (color) => 
+                (color) =>
                     <div>
-                        <p style={{color: color}}>这是button组件</p>
-                        <Text></Text>  
-                    </div>                          
+                        <p style={{ color: color }}>这是button组件</p>
+                        <Text></Text>
+                    </div>
             }
         </themeContext.Consumer>
     )

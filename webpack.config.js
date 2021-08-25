@@ -15,6 +15,11 @@ module.exports = {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].bundle.js',
     },
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, './src')
+        }
+    },
     devServer: {
         historyApiFallback: true,
         contentBase: path.join(__dirname, './dist'),
