@@ -7,18 +7,29 @@ import {
 } from 'react-router-dom';
 import loadable from '@/utils/loadable'
 
-const Change = loadable(() => import('@/views/Change'))
-const User = loadable(() => import('@/views/User'))
-const OtherPage = loadable(() => import('@/views/Other'))
+const Layout = loadable(() => import('@/pages/Layout'))
+const Change = loadable(() => import('@/pages/Change'))
+const OtherPage = loadable(() => import('@/pages/Other'))
 
 const routes = [
     {
-        path: "/change",
-        component: Change
+        path: '/home',
+        component: Layout
     },
     {
-        path: "/user",
-        component: User
+        path: '/recommand',
+        component: Layout
+    },
+    {
+        path: '/order',
+        component: Layout
+    },{
+        path: '/my',
+        component: Layout
+    },
+    {
+        path: "/change",
+        component: Change
     },
     {
         path: "/other",
@@ -41,8 +52,8 @@ function RouteWithSubRoutes(route) {
 const BasicRoute = () => (
     <Router>
         <Switch>
-            <Route exact path='/' render={() => (
-                <Redirect to='/change' />
+            <Route exact path="/" render={() => (
+                <Redirect to="/home"></Redirect>
             )} />
             {routes.map((route, i) => (
                 <RouteWithSubRoutes key={i} {...route} />

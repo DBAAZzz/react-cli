@@ -3,18 +3,20 @@ import { Link } from 'react-router-dom'
 import store from '../../store'
 import ButtonComponent from '../../component/Button'
 import themeContext from '../../context/themeContext'
+import './style.scss'
+
 export default class Home extends React.Component {
     constructor(props) {
         super(props)
         this.state = store.getState().countReducer;
-        this.cancleSub = () => {};
+        this.cancleSub = () => { };
     }
     render() {
         return (
             <themeContext.Provider value="blue">
                 <div>
-                    <h1 className="title" >这是home页面</h1>
-                    <h2 className="title2">{this.state.count}</h2>
+                    <h1 className="title">这是home页面</h1>
+                    <h2>{this.state.count}</h2>
                     <button onClick={() => this.add()}>增加</button>
                     <button onClick={() => this.reduce()}>减少</button>
                     <Link to="/user">user</Link>
@@ -24,8 +26,8 @@ export default class Home extends React.Component {
         )
     }
     componentDidMount() {
-        this.cancleSub = store.subscribe(()=>{
-            this.setState( store.getState().countReducer) 
+        this.cancleSub = store.subscribe(() => {
+            this.setState(store.getState().countReducer)
         })
     }
     componentWillUnmount() {
