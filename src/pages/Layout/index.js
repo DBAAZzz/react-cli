@@ -3,9 +3,10 @@ import { Route, Switch, withRouter } from 'react-router-dom'
 
 import routes from './router.js'
 import Footer from './component/footer'
-import './style.scss'
+import styles from './style.module.scss'
 
 const Layout = (props) => {
+    console.log('子组件变化会重新渲染吗')
     let routeList = [
         {
             name: '首页',
@@ -24,8 +25,8 @@ const Layout = (props) => {
         }
     ]
     return (
-        <div className="layout">
-            <div className="main">
+        <div className={styles.layout}>
+            <div className={styles.main}>
                 <Switch>
                     {routes.map((route) => {
                         return <Route key={route.path} path={route.path} render={props => (

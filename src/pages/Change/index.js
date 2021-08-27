@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import store from '../../store'
 import ButtonComponent from '../../component/Button'
 import themeContext from '../../context/themeContext'
-import './style.scss'
 
 export default class Home extends React.Component {
     constructor(props) {

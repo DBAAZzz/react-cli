@@ -1,5 +1,5 @@
 import React from 'react'
-import './footer.scss'
+import styles from './footer.module.scss'
 
 export default function Footer(props) {
     console.log('Footer这个组件渲染了多少次')
@@ -11,12 +11,12 @@ export default function Footer(props) {
         props.history.push(nav.path)
     }
     return (
-        <div className="footer">
+        <div className={styles.footer}>
             {route.map((nav, index) => {
                 return (
-                    <div className="footer_nav" key={index} onClick={() => handleClickNav(nav)}>
-                        <div className="footer_nav_icon"></div>
-                        <span className="footer_nav_label">{nav.name}</span>
+                    <div className={styles.footer_nav} key={index} onClick={() => handleClickNav(nav)}>
+                        <div className={styles.footer_nav_icon}></div>
+                        <span className={styles.footer_nav_label}>{nav.name}</span>
                     </div>
                 )
             })}

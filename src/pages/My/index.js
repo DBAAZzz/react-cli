@@ -1,5 +1,4 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom'
 
 function My() {
     return (
@@ -9,4 +8,4 @@ function My() {
     )
 }
 
-export default withRouter(My)
+export default My

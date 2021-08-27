@@ -7,9 +7,9 @@ import {
 } from 'react-router-dom';
 import loadable from '@/utils/loadable'
 
-const Layout = loadable(() => import('@/pages/Layout'))
-const Change = loadable(() => import('@/pages/Change'))
-const OtherPage = loadable(() => import('@/pages/Other'))
+const Layout = loadable(() => import(/* webpackChunkName: 'layout' */ '@/pages/Layout'))
+const Change = loadable(() => import(/* webpackChunkName: 'change' */ '@/pages/Change'))
+const OtherPage = loadable(() => import(/* webpackChunkName: 'other' */ '@/pages/Other'))
 
 const routes = [
     {
