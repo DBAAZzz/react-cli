@@ -39,6 +39,7 @@
     "react-router-dom": "^5.2.0",
     "redux-devtools-extension": "^2.13.9",
     "sass-loader": "^12.1.0",
+    "sass-resources-loader": "^2.2.4",
     "style-loader": "^2.0.0",
     "webpack": "^5.39.0",
     "webpack-bundle-analyzer": "^4.4.2",

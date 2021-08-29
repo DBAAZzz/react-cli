@@ -1,3 +1,21 @@
 /* 首页底部导航栏的高度 */
 $navHeight: 100px;
 
+$baseColor: #333;
+$subColor: #666;
+$ignoreColor: #999;
+$themeColor: #adf7d1;
+$themeBgColor: #bdffdd;
+$pageBackgroundColor: #f6f6f6;
+$keyColor: #ff6f3c;
+$keyBgColor: #ffe7d9;
+$importColor: #f94144;
+
+/* 超出隐藏 */
+@mixin ellipsisBasic($clamp: 2) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $clamp;
+}

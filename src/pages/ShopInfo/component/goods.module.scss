@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+.goods {
+    display: flex;
+    margin: 30px 0 40px 0;
+    padding: 0 20px;
+    &_pic {
+        width: 180px;
+        height: 180px;
+        border-radius: 16px;
+        object-fit: cover;
+    }
+    &_info {
+        margin-left: 20px;
+        &_name {
+            font-size: 30px;
+            font-weight: bold;
+        }
+        &_desc {
+            @include ellipsisBasic(2);
+            margin-top: 8px;
+            color: $subColor;
+        }
+        &_sales {
+            margin-top: 8px;
+            color: $subColor;
+        }
+        &_price {
+            position: relative;
+            margin-top: 8px;
+            color: $importColor;
+            font-weight: bold;
+            span:nth-child(1) {
+                font-size: 20px;
+            }
+            span:nth-child(2) {
+                display: inline-block;
+                margin-left: 6px;
+                font-size: 30px;
+            }
+        }
+    }
+    &_add_button {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 40px;
+        height: 40px;
+        background: blue;
+        border-radius: 12px;
+    }
+}

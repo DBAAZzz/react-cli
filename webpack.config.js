@@ -114,7 +114,14 @@ module.exports = () => {
                                             localIdentName: "[local]_[hash:base64:5]",
                                         }
                                     }
-                                }, 'postcss-loader', 'sass-loader'
+                                }, 'postcss-loader', 'sass-loader', {
+                                    loader: 'sass-resources-loader',
+                                    options: {
+                                        resources: [
+                                            path.resolve(__dirname, './src/style/base.scss')
+                                        ]
+                                    }
+                                }
                             ]
                         }
                     ]
