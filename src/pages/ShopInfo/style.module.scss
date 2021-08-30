@@ -1,12 +1,24 @@
 @charset "UTF-8";
 
-$height: 204px;
+$height: 300px;
 
 .shop {
+    height: 100vh;
+    overflow: auto;
+    overflow-x: hidden;
 }
 .shop_intro {
     position: relative;
     color: $baseColor;
+    &_opeartion {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100px;
+        background: yellowgreen;
+        z-index: 1;
+    }
     &_pic {
         display: block;
         height: 200px;
@@ -63,7 +75,7 @@ $height: 204px;
     display: flex;
     padding: 0 30px;
     height: 100px;
-    // background: blue;
+    background: blue;
     border-bottom: 2px solid #f0f0f0;
     &_item {
         display: flex;

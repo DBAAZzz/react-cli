@@ -1,6 +1,8 @@
-import React from 'react'
-import styles from './style.module.scss'
+import React, { useEffect, useRef, useState } from 'react'
+import { addEvent, removeEvent } from '@/utils'
+
 import Goods from './component/goods'
+import styles from './style.module.scss'
 
 const tabList = ['点餐', '评价', '商家']
 
@@ -8,9 +10,24 @@ const category_tab = new Array(12).fill(0).map((item, index) => index + 1)
 const category_content = new Array(30).fill(0).map((item, index) => index + 1)
 
 const ShopInfo = () => {
-    return <div className={styles.shop}>
+
+    const pageRef = useRef(null)
+    const selectRef = useRef(null)
+
+    useEffect(() => {
+        addEvent(pageRef.current, 'scroll', handleScroll)
+        return () => {
+            removeEvent(pageRef.current, 'scroll')
+        }
+    })
+    // 监听页面滚动
+    function handleScroll() {
+        let el = selectRef.current
+    }
+    return <div className={styles.shop} ref={pageRef} >
         {/* 门店介绍 */}
         <div className={styles.shop_intro}>
+            <div className={styles.shop_intro_opeartion}></div>
             <div className={styles.shop_intro_pic}></div>
             <div className={styles.shop_intro_info}>
                 <div className={styles.info_shop_pic}></div>
@@ -26,9 +43,9 @@ const ShopInfo = () => {
             </div>
         </div>
         {/* tab栏 */}
-        <div className={styles.tab}>
+        <div className={`${styles.tab}`} ref={selectRef} >
             {tabList.map((tabItem, index) => {
-                return <div className={`${styles.tab_item} ${index == 0 ? styles.tab_active_item : ''}`}>
+                return <div key={index} className={`${styles.tab_item} ${index == 0 ? styles.tab_active_item : ''}`}>
                     {tabItem}
                 </div>
             })}
@@ -37,16 +54,16 @@ const ShopInfo = () => {
         <div className={styles.category_view}>
             <div className={styles.category_tab}>
                 <ul >
-                    {category_tab.map((tabItem) => {
-                        return <li className={styles.cur}>
+                    {category_tab.map((tabItem, index) => {
+                        return <li className={styles.cur} key={index} >
                             <span>下单须知{tabItem}</span>
                         </li>
                     })}
                 </ul>
             </div>
             <div className={styles.category_content}>
-                {category_content.map((goodsItem) => {
-                    return <Goods></Goods>
+                {category_content.map((goodsItem, index) => {
+                    return <Goods key={index}></Goods>
                 })}
             </div>
         </div>

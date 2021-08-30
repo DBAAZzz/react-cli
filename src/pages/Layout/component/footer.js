@@ -8,7 +8,7 @@ export default function Footer(props) {
     let route  = props.route
     function handleClickNav(nav) {
         if(path == nav.path) return ;
-        props.history.push(nav.path)
+        props.history.replace(nav.path)
     }
     return (
         <div className={styles.footer}>
