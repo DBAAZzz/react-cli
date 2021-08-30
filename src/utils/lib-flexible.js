@@ -72,6 +72,7 @@
             width = 540 * dpr;
         }
         var rem = width / 10;
+        window.pxRatio = 750 / width
         docEl.style.fontSize = rem + 'px';
         flexible.rem = win.rem = rem;
     }

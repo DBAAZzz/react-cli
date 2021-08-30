@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+import { addEvent } from '@/utils'
 
 import Address from './component/address'
 import styles from './style.module.scss'
@@ -65,14 +66,35 @@ let selectOption = [
     }
 ]
 
-let shopNum = new Array(10).fill(0).map((item,index) => index + 1)
+let shopNum = new Array(10).fill(0).map((item, index) => index + 1)
 
-const Home = () =>  {
+const Home = () => {
     console.log('Home渲染了')
     const [activeSelect, setActiveSelect] = useState([])
+    let [isFixed, setIsFixed] = useState(false)
+    console.log('Home', isFixed)
+    const pageRef = useRef(null)
 
-    
-    function handleClickOption(id) {
+    const getPageSrollTop = (el) => {
+        const { scrollTop } = el.target
+        const FixedHeight = 140; // 当滚动像素大于140时就出现吸附效果
+        console.log('isFixed', isFixed)
+        if (scrollTop * window.pxRatio >= FixedHeight && !isFixed) {
+            console.log('出现吸附效果')
+            setIsFixed(true)
+        } else if (scrollTop * window.pxRatio < FixedHeight && isFixed) {
+            console.log('取消吸附效果')
+            setIsFixed(false)
+        }
+    }
+
+    useEffect(() => {
+        console.log('执行一次')
+        addEvent(pageRef.current, 'scroll', getPageSrollTop)
+        return () => { }
+    }, [])
+
+    const handleClickOption = (id) => {
         let index = activeSelect.indexOf(id)
         if (index != -1) {
             activeSelect.splice(index, 1)
@@ -82,17 +104,19 @@ const Home = () =>  {
         }
     }
     return (
-        <div className={styles.home}>
+        <div className={styles.home} ref={pageRef}>
             <Address></Address>
             {/* 顶部的菜单栏 */}
             <div className={styles.floor}>
                 {console.log('我是home里面的floor也被渲染了')}
-                <div className={styles.search}>
-                    <span className={`${styles.search_icon} iconfont icon-maobao`} />
-                    <div className={styles.search_input}>
-                        <span>九尾狐狸辣椒肉 满100减1</span>
+                <div className={`${styles.search} ${isFixed ? styles.search_fixed : ''}`}>
+                    <div className={styles.search_box}>
+                        <span className={`${styles.search_box_icon} iconfont icon-maobao`} />
+                        <div className={styles.search_box_input}>
+                            <span>九尾狐狸辣椒肉 满100减1</span>
+                        </div>
+                        <div className={styles.search_box_button}><span className={styles.search_box_button_text}>搜索</span></div>
                     </div>
-                    <div className={styles.search_button}><span className={styles.search_button_text}>搜索</span></div>
                 </div>
                 <div className={styles.tab}>
                     {tableList.map((tabItem, index) => {
