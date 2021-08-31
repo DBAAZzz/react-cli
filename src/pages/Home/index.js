@@ -71,26 +71,27 @@ let shopNum = new Array(10).fill(0).map((item, index) => index + 1)
 const Home = () => {
     console.log('Home渲染了')
     const [activeSelect, setActiveSelect] = useState([])
-    let [isFixed, setIsFixed] = useState(false)
-    console.log('Home', isFixed)
+    const [isFixed, setIsFixed] = useState(false)
     const pageRef = useRef(null)
 
-    const getPageSrollTop = (el) => {
+    let fixed = false
+
+    const pageSroll = (el) => {
         const { scrollTop } = el.target
         const FixedHeight = 140; // 当滚动像素大于140时就出现吸附效果
-        console.log('isFixed', isFixed)
-        if (scrollTop * window.pxRatio >= FixedHeight && !isFixed) {
-            console.log('出现吸附效果')
+
+        if (scrollTop * window.pxRatio >= FixedHeight && !fixed) {
             setIsFixed(true)
-        } else if (scrollTop * window.pxRatio < FixedHeight && isFixed) {
-            console.log('取消吸附效果')
+            fixed = true
+        } else if (scrollTop * window.pxRatio < FixedHeight && fixed) {
             setIsFixed(false)
+            fixed = false
         }
     }
 
     useEffect(() => {
         console.log('执行一次')
-        addEvent(pageRef.current, 'scroll', getPageSrollTop)
+        addEvent(pageRef.current, 'scroll', pageSroll)
         return () => { }
     }, [])
 
@@ -108,14 +109,15 @@ const Home = () => {
             <Address></Address>
             {/* 顶部的菜单栏 */}
             <div className={styles.floor}>
-                {console.log('我是home里面的floor也被渲染了')}
-                <div className={`${styles.search} ${isFixed ? styles.search_fixed : ''}`}>
-                    <div className={styles.search_box}>
-                        <span className={`${styles.search_box_icon} iconfont icon-maobao`} />
-                        <div className={styles.search_box_input}>
-                            <span>九尾狐狸辣椒肉 满100减1</span>
+                <div className={isFixed ? styles.fill_search : ''}>
+                    <div className={`${styles.search} ${isFixed ? styles.search_fixed : ''}`}>
+                        <div className={styles.search_box}>
+                            <span className={`${styles.search_box_icon} iconfont icon-maobao`} />
+                            <div className={styles.search_box_input}>
+                                <span>九尾狐狸辣椒肉 满100减1</span>
+                            </div>
+                            <div className={styles.search_box_button}><span className={styles.search_box_button_text}>搜索</span></div>
                         </div>
-                        <div className={styles.search_box_button}><span className={styles.search_box_button_text}>搜索</span></div>
                     </div>
                 </div>
                 <div className={styles.tab}>

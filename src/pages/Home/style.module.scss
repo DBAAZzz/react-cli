@@ -22,9 +22,10 @@
         display: flex;
         align-items: center;
         margin: 0 30px;
-        height: 60px;
+        height: 64px;
         border: 4px solid $themeColor;
         border-radius: 80px;
+        box-sizing: border-box;
         &_icon {
             margin: 0 12px;
             font-size: 40px;
@@ -49,6 +50,10 @@
             }
         }
     }
+}
+
+.fill_search {
+    height: 104px;
 }
 
 .search_fixed {

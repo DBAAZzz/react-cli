@@ -1,12 +1,13 @@
 @charset "UTF-8";
 
-$height: 300px;
+$height: 160px;
 
 .shop {
     height: 100vh;
     overflow: auto;
     overflow-x: hidden;
 }
+/* 门店介绍 */
 .shop_intro {
     position: relative;
     color: $baseColor;
@@ -71,12 +72,14 @@ $height: 300px;
         }
     }
 }
+/* tab栏 */
 .tab {
     display: flex;
     padding: 0 30px;
     height: 100px;
     background: blue;
     border-bottom: 2px solid #f0f0f0;
+    box-sizing: border-box;
     &_item {
         display: flex;
         align-items: center;
@@ -97,18 +100,26 @@ $height: 300px;
             background: $themeColor;
         }
     }
+    &_fill {
+        height: 100px;
+    }
 }
-
+.tab_fixed {
+    position: fixed;
+    top: 100px;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+/* 点餐分类 */
 .category_view {
     display: flex;
-    min-height: calc(100vh - #{$height});
-    background: red;
-    padding-bottom: 100px;
+    height: calc(100vh - #{$height});
+    background: yellow;
     .category_tab {
         flex-shrink: 0;
         width: 150px;
-        height: calc(100vh - #{$height});
-        
+        height: 100%;
         background: #f6f6f6;
         overflow: auto;
         overflow-x: hidden;
@@ -128,16 +139,27 @@ $height: 300px;
         }
     }
     .category_content {
+        position: relative;
+        top: 0;
+        bottom: 0;
         flex-grow: 1;
-        height: calc(100vh - #{$height});
+        height: 100%;
         background: yellowgreen;
-        overflow: auto;
-        overflow-x: hidden;
         &::-webkit-scrollbar {
             width: 0;
             background: transparent;
         }
     }
 }
+.category_view_height {
+    height: calc(100vh - 190px);
+}
 
-
+.cart {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: red;
+}
