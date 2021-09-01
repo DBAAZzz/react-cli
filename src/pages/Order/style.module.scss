@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+$navHeight: 100px;
+
+.order {
+    height: 100%;
+    background: $pageBackgroundColor;
+    color: $baseColor;
+    overflow: auto;
+    overflow-x: hidden;
+}
+.order_nav {
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 30px;
+    height: $navHeight;
+    background: #fff;
+    box-sizing: border-box;
+    z-index: 1;
+    &_item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding-right: 40px;
+        font-size: 28px;
+    }
+    &_active_item {
+        position: relative;
+        font-weight: bold;
+        &::after {
+            position: absolute;
+            bottom: 0;
+            width: 34px;
+            height: 6px;
+            content: '';
+            border-radius: 20px;
+            background: $themeColor;
+        }
+    }
+}
+
+.order_list {
+    margin: $navHeight 0 40px 0;
+    overflow: auto;
+}
