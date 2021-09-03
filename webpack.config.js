@@ -69,6 +69,12 @@ module.exports = () => {
             hot: true,
             quiet: true,
             port: 8082,
+            proxy: {
+                '/user': {
+                    target: 'http://139.196.100.226:3001',
+                    changeOrigin: true,
+                }
+            }
         },
         module: {
             rules: [

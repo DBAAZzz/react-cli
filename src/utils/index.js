@@ -1,4 +1,8 @@
-/* 图片转base64位 */
+/**
+ * 图片url转base64位图片
+ * @param {string} url 
+ * @returns promise
+ */
 export function loadImgAsBase64(url) {
     return new Promise((resolve, reject) => {
         let canvas = document.createElement('canvas');
@@ -20,7 +24,12 @@ export function loadImgAsBase64(url) {
     })
 }
 
-/* 添加监听事件 */
+/**
+ * 监听事件
+ * @param {element} el 
+ * @param {string} type 
+ * @param {function} callback 
+ */
 export function addEvent(el = 'window', type, callback) {
     if (el.addEventListener) {
         el.addEventListener(type, callback)
@@ -29,7 +38,12 @@ export function addEvent(el = 'window', type, callback) {
     }
 }
 
-/* 移除监听事件 */
+/**
+ * 移除监听事件
+ * @param {element} el 
+ * @param {string} type 
+ * @param {function} callback 
+ */
 export function removeEvent(el = 'window', type, callback) {
     if (el.removeEventListener) {
         el.removeEventListener(type, callback)
