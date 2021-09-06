@@ -13,8 +13,8 @@ const Layout = (props) => {
             path: '/home'
         },
         {
-            name: '推荐',
-            path: '/recommand'
+            name: '统计',
+            path: '/statistics'
         },
         {
             name: '订单',

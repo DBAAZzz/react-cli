@@ -16,7 +16,7 @@ const routes = [
         component: Layout
     },
     {
-        path: '/recommand',
+        path: '/statistics',
         component: Layout
     },
     {

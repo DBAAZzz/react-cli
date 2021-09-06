@@ -36,7 +36,7 @@ module.exports = () => {
             splitChunks: {
                 chunks: 'all',
                 minChunks: 1, // 要提取的的chunk最少被引用次数
-                minSize: 30000, // 要提取的chunk的最小大小
+                // minSize: 30000, // 要提取的chunk的最小大小
                 cacheGroups: {
                     vendor: {
                         test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
@@ -47,6 +47,12 @@ module.exports = () => {
                         minChunks: 2,
                         name: 'common',
                         priority: -20,
+                    },
+                    chart: {
+                        test: /[\\/]node_modules[\\/](react-chartjs-2|_react-chartjs-2|chart.js)[\\/]/,
+                        name: 'chart',
+                        filename: 'chart',
+                        priority: -5,
                     }
                 }
             },

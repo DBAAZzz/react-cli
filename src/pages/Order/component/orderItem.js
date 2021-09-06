@@ -11,8 +11,8 @@ const OrderItem = (props) => {
             <span className={styles.shop_info_name}>顶道阿婆牛杂(床位)</span>
         </div>
         <div className={styles.shop_disc}>
-            {price.map((item) => {
-                return <span className={styles.shop_disc_item}>{item}</span>
+            {price.map((item, index) => {
+                return <span key={index} className={styles.shop_disc_item}>{item}</span>
             })}
         </div>
         <div className={styles.order_content}>
