@@ -6,14 +6,14 @@ const Recommand = () => {
     const [chartData, setChartData] = useState({})
     const chart = () => {
         setChartData({
-            labels: ['周一', '周二', '周三', '周四', '周五'],
+            labels: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
             datasets: [
                 {
-                    label: '数量',
-                    data: [16, 20, 8, 26, 8],
+                    label: '金额',
+                    data: [16, 20, 8, 26, 8, 20, 80],
                     fill: true,
                     backgroundColor: 'rgba(299, 11, 103, 0.1)',
-                    borderWidth: 2,
+                    borderWidth: 1,
                     borderColor: 'rgb(75, 192, 192, 1)',
                     tension: 0.4
                 }

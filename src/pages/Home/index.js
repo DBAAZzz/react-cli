@@ -68,7 +68,7 @@ let selectOption = [
 
 let shopNum = new Array(10).fill(0).map((item, index) => index + 1)
 
-const Home = () => {
+const Home = (props) => {
     console.log('Home渲染了')
     const [activeSelect, setActiveSelect] = useState([])
     const [isFixed, setIsFixed] = useState(false)
@@ -140,7 +140,7 @@ const Home = () => {
                 })}
             </div>
             {shopNum.map((shopItem, index) => {
-                return <ShopItem key={index}></ShopItem>
+                return <ShopItem key={index} ></ShopItem>
             })}
         </div>
     )

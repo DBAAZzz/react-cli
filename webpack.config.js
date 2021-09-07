@@ -7,6 +7,7 @@ const ProgressBarPlugin = require("progress-bar-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
 const TerserPlugin = require('terser-webpack-plugin')
+const CompressionPlugin = require("compression-webpack-plugin");
 
 const isProduction = process.env.NODE_ENV == 'production'
 
@@ -19,7 +20,7 @@ module.exports = () => {
         },
         output: {
             path: path.resolve(__dirname, './dist'),
-            filename: '[name].[contenthash:8].js',
+            filename: 'js/[name].[contenthash:8].js',
         },
         optimization: {
             moduleIds: 'deterministic', // 默认 根据模块名称生成简短的hash值
@@ -163,6 +164,10 @@ module.exports = () => {
             ), // 打包进度条优化
             new CleanWebpackPlugin(), // 打包前清空build目录里面的文件
             new BundleAnalyzerPlugin(), // 分析打包后的文件大小
+            new CompressionPlugin({
+                algorithm: 'gzip',
+                minRatio: 0.8
+            }),
             new MiniCssExtractPlugin({
                 filename: 'css/[name].[contenthash:8].css', //输出的 CSS 文件的名称
                 chunkFilename: 'css/[name].[contenthash:8].chunk.css',// 非入口的 css chunk 文件名称

@@ -1,10 +1,14 @@
 import React, { memo } from 'react'
+import { withRouter } from 'react-router'
 import styles from './style.module.scss'
 
-function ShopItem() {
-    return <div className={styles.shop_item}>
-        <div className={styles.shop_pic}>
+const ShopItem  = (props) => {
+    const handleClick = () => {
+        props.history.push('/shopinfo')
+    }
 
+    return <div className={styles.shop_item} onClick={handleClick}>
+        <div className={styles.shop_pic}>
         </div>
         <div className={styles.shop_info}>
             <p className={styles.shop_info_name}>汕头汇集肠粉汕头汕头集肠粉肠粉</p>
@@ -28,4 +32,4 @@ function ShopItem() {
     </div>
 }
 
-export default memo(ShopItem)
+export default withRouter(memo(ShopItem))

@@ -11,14 +11,22 @@ const category_content = new Array(30).fill(0).map((item, index) => index + 1)
 
 const ShopInfo = () => {
     const [isFixed, setIsFixed] = useState(false)
+    const [opacity, setOpacity] = useState(0)
     const pageRef = useRef(null)
     let fixed = false
     // 监听页面滚动
     function pageScroll(el) {
         const { scrollTop } = el.target
         const FixedHeight = 300; // 当滚动像素大于140时就出现吸附效果
+        if (scrollTop * window.pxRatio < FixedHeight && !fixed) {
+            let absNumber = Math.abs(scrollTop * window.pxRatio / FixedHeight - opacity)
+            if (absNumber >= 0.1)
+                setOpacity(scrollTop * window.pxRatio / FixedHeight)
+        }
+        if(scrollTop * window.pxRatio == 0) setOpacity(0)
         if (scrollTop * window.pxRatio >= FixedHeight && !fixed) {
             setIsFixed(true)
+            setOpacity(1)
             fixed = true
         } else if (scrollTop * window.pxRatio < FixedHeight && fixed) {
             setIsFixed(false)
@@ -34,8 +42,10 @@ const ShopInfo = () => {
     return <div className={styles.shop} ref={pageRef} >
         {/* 门店介绍 */}
         <div className={styles.shop_intro}>
-            <div className={styles.shop_intro_opeartion}></div>
-            <div className={styles.shop_intro_pic}></div>
+            <div style={{ background: `rgba(255, 255, 255, ${opacity})` }}
+                className={styles.shop_intro_opeartion}
+            ></div>
+            <img className={styles.shop_intro_pic} src='http://139.196.100.226/images/xxxx.png' alt="门店" />
             <div className={styles.shop_intro_info}>
                 <div className={styles.info_shop_pic}></div>
                 <div className={styles.info_shop_name}>汕头汇集仓汕头汇集仓汕头汇集仓汕头汇集仓</div>
@@ -73,7 +83,6 @@ const ShopInfo = () => {
                     })}
                 </ul>
             </div>
-            {console.log(isFixed)}
             <div style={isFixed ? { overflow: 'auto', overflowX: 'hidden' } : { overflow: 'hidden' }}
                 className={`${styles.category_content} `}
             >
