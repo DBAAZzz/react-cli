@@ -19,3 +19,21 @@ $importColor: #f94144;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: $clamp;
 }
+
+/* 1像素线 */
+@mixin one-pix-line($pos: "bottom", $color: $subColor, $style: solid) {
+    $prop: border-#{$pos};
+    @if $pos == "all" {
+        $prop: border;
+    }
+    #{$prop}: 1px $style $color;
+    @media (min-resolution: 2dppx) {
+        #{$prop}: 0.5px $style $color;
+    }
+    @media (min-resolution: 3dppx) {
+        #{$prop}: 0.333333px $style $color;
+    }
+    @media (min-resolution: 4dppx) {
+        #{$prop}: 0.25px $style $color;
+    }
+}

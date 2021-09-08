@@ -8,7 +8,9 @@ import {
 import loadable from '@/utils/loadable'
 
 const Layout = loadable(() => import(/* webpackChunkName: 'layout' */ '@/pages/Layout'))
-const ShopInfo = loadable(() => import(/* webpackChunkName: 'shopinfo' */'@/pages/ShopInfo'))
+const ShopInfo = loadable(() => import(/* webpackChunkName: 'shopinfo' */ '@/pages/ShopInfo'))
+const AddrManage = loadable(() => import(/* webpackChunkName: 'addrmanage' */ '@/pages/AddrManage'))
+const AddAddress = loadable(() => import(/* webpackChunkName: 'addAddress' */ '@/pages/AddAddress'))
 
 const routes = [
     {
@@ -30,6 +32,14 @@ const routes = [
     {
         path: '/shopinfo',
         component: ShopInfo
+    },
+    {
+        path: '/addrmanage', 
+        component: AddrManage
+    },
+    {
+        path: '/addAddress',
+        component: AddAddress
     }
 ];
 
