@@ -51,3 +51,16 @@ export function removeEvent(el = 'window', type, callback) {
         el.detachEvent('on' + type, callback)
     }
 }
+
+/**
+ * 判断元素是否滚动到了底部
+ * @param {*} el 
+ * @returns boolean
+ */
+export function isBottom(el = 'window') {
+    const clientHeight = el.clientHeight
+    const scrollHeight = el.scrollHeight
+    const scrollTop = el.scrollTop
+    const isBottom = (clientHeight + scrollTop === scrollHeight)
+    return isBottom
+}
