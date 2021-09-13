@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import store from '@/store'
 import styles from './style.module.scss'
 
-const AddAddress = () => {
-
-    console.log('渲染了')
+const AddAddress = (props) => {
 
     const [addressForm, setAddressForm] = useState({})
     const [tag, setTag] = useState('')
@@ -11,11 +10,11 @@ const AddAddress = () => {
     const form = [
         {
             lable: '地址',
-            component: 'input',
+            component: 'Selectcomponent',
             type: 'text',
             key: 'address',
             placeholder: '选择收获地址',
-            required: true
+            required: true,
         },
         {
             lable: '门牌号',
@@ -27,8 +26,8 @@ const AddAddress = () => {
         },
         {
             lable: '标签',
-            tag: ['家', '公司', '学校'],
-            component: 'tag',
+            tagList: ['家', '公司', '学校'],
+            component: 'Tagcomponent',
             key: 'tag',
             required: false
         },
@@ -46,13 +45,14 @@ const AddAddress = () => {
             type: 'number',
             key: 'phone',
             placeholder: '收货人手机号码',
-            required: true
+            required: true,
+            reg: /^(?:(?:\+|00)86)?1[3-9]\d{9}$/,
+            message: '请输入正确的手机号码'
         }
     ]
 
     // 获取输入框的内容
     const getValue = (el, formItem) => {
-
         const { value } = el.target
         const { key } = formItem
         addressForm[key] = value
@@ -67,20 +67,41 @@ const AddAddress = () => {
         console.log('addressForm', addressForm)
     }
 
+    const getAddress = () => {
+        props.history.push('/getAddress')
+    }
+
     const saveAddress = () => {
         for (let i = 0; i < form.length; i++) {
             if (form[i].required && !addressForm[form[i].key]) {
-                console.log(`${form[i].lable}的内容不能为空`)
-                return ;
+                alert(`${form[i].lable}的内容不能为空`)
+                return
+            }
+            if(form[i].reg && !form[i].reg.test(addressForm[form[i].key])) {
+                alert(form[i].message)
+                return 
             }
         }
-        console.log('成功提交')
+    }
+
+    // 选择地址组件
+    const Selectcomponent = (props) => {
+        const { addressReducer } = store.getState()
+        addressForm['address'] = addressReducer.address
+        setAddressForm(addressForm)
+        return <div className={styles.select_container} onClick={getAddress}>
+            {addressReducer.address ?
+                <span className={styles.address_value}>{addressReducer.address}</span> :
+                <span className={styles.address_placeholder}>选择收获地址</span>
+            }
+        </div>
     }
 
     // tag组件
-    const tagcomponent = (formItem) => {
+    const Tagcomponent = (props) => {
+        let { tagList } = props
         return <div className={styles.tag_container}>
-            {formItem.tag.map((tagItem, tagIndex) => {
+            {tagList.map((tagItem, tagIndex) => {
                 return <div key={tagIndex} onClick={() => handleClickTag(tagItem)}
                     className={`${styles.tag_item} ${tagItem === tag ? styles.tag_item_active : styles.tag_item_normal}`}>
                     <span>{tagItem}</span>
@@ -98,7 +119,8 @@ const AddAddress = () => {
                         <input className={styles.input} placeholder={formItem.placeholder} value={addressForm[formItem.key]}
                             type={formItem.type} onChange={(el) => getValue(el, formItem)}
                         /> :
-                        tagcomponent(formItem)
+                        formItem.component == 'Selectcomponent' ? <Selectcomponent></Selectcomponent> :
+                            <Tagcomponent {...formItem}></Tagcomponent>
                     }
                 </div>
             })}

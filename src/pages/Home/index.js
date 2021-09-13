@@ -91,8 +91,8 @@ const Home = (props) => {
 
     useEffect(() => {
         console.log('执行一次')
-        addEvent(pageRef.current, 'scroll', pageSroll)
-        return () => { }
+        addEvent(pageRef.current, 'scroll', getPageSrollTop)
+        return () => {  }
     }, [])
 
     const handleClickOption = (id) => {

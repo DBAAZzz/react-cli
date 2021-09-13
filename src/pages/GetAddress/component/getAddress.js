@@ -1,5 +1,7 @@
 import React, { memo, useEffect, useRef, useState } from 'react'
-import { addEvent, removeEvent, isBottom } from '@/utils'
+import { setAddressAc } from '@/store/createAction'
+import { withRouter } from 'react-router'
+import { removeEvent, isBottom } from '@/utils'
 import styles from './getAddress.module.scss'
 
 const GetAddress = (props) => {
@@ -136,6 +138,11 @@ const GetAddress = (props) => {
         }
     }
 
+    const sendAddress = () => {
+        setAddressAc(address)
+        props.history.goBack()
+    }
+
     useEffect(() => {
         init()
         return () => {
@@ -177,11 +184,11 @@ const GetAddress = (props) => {
         }
         {address ? <div className={styles.address_container}>
             <span className={styles.address_text}>{address}</span>
-            <div className={styles.confirm_button}>确定</div>
+            <div className={styles.confirm_button} onClick={sendAddress}>确定</div>
         </div> : ''}
 
     </div>
 
 }
 
-export default memo(GetAddress)
+export default withRouter(memo(GetAddress))

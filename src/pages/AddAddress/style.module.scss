@@ -11,7 +11,7 @@
         background: #fff;
         overflow: auto;
         &_item {
-            @include one-pix-line('bottom', #efefef);
+            @include one-pix-line("bottom", #efefef);
             display: flex;
             align-items: center;
             padding: 30px 0;
@@ -19,6 +19,7 @@
                 border: none;
             }
             .lable {
+                flex-shrink: 0;
                 width: 120px;
                 font-size: 30px;
                 font-weight: bold;
@@ -32,6 +33,7 @@
                 outline: none;
                 &::-webkit-input-placeholder {
                     color: $ignoreColor;
+                    font-size: 30px;
                 }
             }
         }
@@ -44,6 +46,7 @@
             height: 80px;
             background: $themeColor;
             border-radius: 60px;
+            cursor: pointer;
             &_text {
                 font-size: 30px;
                 color: #fff;
@@ -66,11 +69,23 @@
         border-radius: 8px;
     }
     .tag_item_normal {
-        @include one-pix-line('all', #efefef);
+        @include one-pix-line("all", #efefef);
         color: $baseColor;
     }
     .tag_item_active {
-        @include one-pix-line('all', $themeColor);
+        @include one-pix-line("all", $themeColor);
         color: $themeColor;
+    }
+}
+
+.select_container {
+    display: flex;
+    font-size: 30px;
+    .address_placeholder {
+        color: $ignoreColor;
+    }
+    .address_value {
+        @include ellipsisBasic(1);
+        color: $baseColor;
     }
 }
