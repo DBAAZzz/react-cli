@@ -10,6 +10,7 @@ import loadable from '@/utils/loadable'
 const Layout = loadable(() => import(/* webpackChunkName: 'layout' */ '@/pages/Layout'))
 const ShopInfo = loadable(() => import(/* webpackChunkName: 'shopinfo' */ '@/pages/ShopInfo'))
 const AddrManage = loadable(() => import(/* webpackChunkName: 'addrmanage' */ '@/pages/AddrManage'))
+const GetAddress = loadable(() => import(/* webpackChunkName: 'getAddress' */ '@/pages/GetAddress'))
 const AddAddress = loadable(() => import(/* webpackChunkName: 'addAddress' */ '@/pages/AddAddress'))
 
 const routes = [
@@ -40,6 +41,10 @@ const routes = [
     {
         path: '/addAddress',
         component: AddAddress
+    },
+    {
+        path: '/getAddress',
+        component: GetAddress
     }
 ];
 

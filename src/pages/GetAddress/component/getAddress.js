@@ -1,9 +1,8 @@
 import React, { memo, useEffect, useRef, useState } from 'react'
 import { addEvent, removeEvent, isBottom } from '@/utils'
-import styles from './point.module.scss'
+import styles from './getAddress.module.scss'
 
-const Point = (props) => {
-    console.log('被渲染了')
+const GetAddress = (props) => {
     const [up, setUp] = useState(false)
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
@@ -43,6 +42,8 @@ const Point = (props) => {
                     setCity(city)
                 }
             })
+            let { lat, lng } = map.getCenter()
+            getAddress(lng, lat)
         });
         map.on('movestart', () => {
             setUp(true)
@@ -98,23 +99,31 @@ const Point = (props) => {
         setListIndex(1)
         setPointList([])
         if (!showPoint) {
-            setShowPoint(true) 
+            setShowPoint(true)
         }
         let { count, list } = await getPointList(searchValue)
         let resultList = list
         setListTotal(count)
-        setPointList(resultList)  
+        setPointList(resultList)
     }
 
     // 监听地点列表滚动
     const pointListScroll = async (el) => {
         // 滚动到了底部
         if (isBottom(el.target) && pointList.length < listTotal) {
-            setListIndex(listIndex+1)
+            setListIndex(listIndex + 1)
             map.PlaceSearch.setPageIndex(listIndex)
             let { list } = await getPointList(searchValue)
             setPointList(pointList.concat(list))
         }
+    }
+
+    const handleSelectPoint = (point) => {
+        setSearching(false)
+        setShowPoint(false)
+        setSearchValue('')
+        setAddress(point.address)
+        pointListRef.current && removeEvent(pointListRef.current, 'scroll')
     }
 
     const focusing = (value) => {
@@ -154,7 +163,7 @@ const Point = (props) => {
                 <div className={styles.wrap}>
                     {showPoint ? <div className={styles.poi_list} ref={pointListRef} onScroll={pointListScroll}>
                         {pointList.map((poiItem, poiIndex) => {
-                            return <div key={poiIndex} className={styles.poi_item}>
+                            return <div key={poiIndex} className={styles.poi_item} onClick={() => handleSelectPoint(poiItem)}>
                                 <p className={styles.poi_item_name}>{poiItem.name}</p>
                                 <p className={styles.poi_item_address}>{poiItem.address}</p>
                             </div>
@@ -166,8 +175,13 @@ const Point = (props) => {
                     }
                 </div> : ''
         }
+        {address ? <div className={styles.address_container}>
+            <span className={styles.address_text}>{address}</span>
+            <div className={styles.confirm_button}>确定</div>
+        </div> : ''}
+
     </div>
 
 }
 
-export default memo(Point)
+export default memo(GetAddress)

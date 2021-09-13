@@ -126,3 +126,34 @@
         }
     }
 }
+
+.address_container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    bottom: 40px;
+    left: 30px;
+    right: 30px;
+    padding: 30px;
+    height: 140px;
+    background: #fff;
+    .address_text {
+        @include ellipsisBasic(2);
+        font-size: 24px;
+        color: $subColor;
+    }
+    .confirm_button {
+        position: absolute;
+        bottom: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+        width: 200px;
+        height: 60px;
+        color: $baseColor;
+        background: $themeColor;
+        border-radius: 10px;
+    }
+}
