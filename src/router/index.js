@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import loadable from '@/utils/loadable'
 
+const Login = loadable(() => import(/* webpackChunkName: 'Login' */ '@/pages/Login'))
 const Layout = loadable(() => import(/* webpackChunkName: 'layout' */ '@/pages/Layout'))
 const ShopInfo = loadable(() => import(/* webpackChunkName: 'shopinfo' */ '@/pages/ShopInfo'))
 const AddrManage = loadable(() => import(/* webpackChunkName: 'addrmanage' */ '@/pages/AddrManage'))
@@ -16,11 +17,12 @@ const AddAddress = loadable(() => import(/* webpackChunkName: 'addAddress' */ '@
 const routes = [
     {
         path: '/home',
-        component: Layout
+        component: Layout,
     },
     {
         path: '/statistics',
-        component: Layout
+        component: Layout,
+        checkAuth: true
     },
     {
         path: '/order',
@@ -35,7 +37,7 @@ const routes = [
         component: ShopInfo
     },
     {
-        path: '/addrmanage', 
+        path: '/addrmanage',
         component: AddrManage
     },
     {
@@ -48,13 +50,21 @@ const routes = [
     }
 ];
 
+// 判断是否有登录
+let authenticate = () => {
+    return localStorage.getItem('login')
+}
+
 function RouteWithSubRoutes(route) {
     return (
         <Route
             path={route.path}
             render={props => (
-                // pass the sub-routes down to keep nesting
-                <route.component {...props} routes={route.routes} />
+                route.checkAuth && !authenticate() ? <Redirect to={{
+                    pathname: '/login',
+                    state: { from: props.location }
+                }}>
+                </Redirect> : <route.component {...props} routes={route.routes} />
             )}
         />
     );
@@ -66,6 +76,9 @@ const BasicRoute = () => (
             <Route exact path="/" render={() => (
                 <Redirect to="/home"></Redirect>
             )} />
+            <Route exact path="/login">
+                <Login></Login>
+            </Route>
             {routes.map((route, i) => (
                 <RouteWithSubRoutes key={i} {...route} />
             ))}

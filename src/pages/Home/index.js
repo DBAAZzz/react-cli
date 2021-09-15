@@ -12,7 +12,7 @@ const tableList = [
     {
         name: '美食'
     },
-    {
+    { 
         name: '美食'
     },
     {
@@ -91,7 +91,7 @@ const Home = (props) => {
 
     useEffect(() => {
         console.log('执行一次')
-        addEvent(pageRef.current, 'scroll', getPageSrollTop)
+        addEvent(pageRef.current, 'scroll', pageSroll)
         return () => {  }
     }, [])
 
