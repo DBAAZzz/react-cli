@@ -166,7 +166,9 @@ module.exports = () => {
                 }
             ), // 打包进度条优化
             new CleanWebpackPlugin(), // 打包前清空build目录里面的文件
-            new BundleAnalyzerPlugin(), // 分析打包后的文件大小
+            new BundleAnalyzerPlugin({
+                analyzerPort: 10000
+            }), // 分析打包后的文件大小
             new CompressionPlugin({
                 algorithm: 'gzip',
                 minRatio: 0.8
