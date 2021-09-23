@@ -143,6 +143,14 @@ const GetAddress = (props) => {
         props.history.goBack()
     }
 
+    const RenderHighlight = (props) => {
+        let { name } = props
+        let re = new RegExp(searchValue, 'g'); //定义正则
+        name = searchValue != '' ? `<p>${name}</p>`.replace(re, `<span class="${styles.poi_item_key}">${searchValue}</span>`) : `<p>${name}</p>`
+        return <div className={styles.poi_item_name} dangerouslySetInnerHTML={{ __html: name }}>
+        </div>
+    }
+
     useEffect(() => {
         init()
         return () => {
@@ -171,7 +179,7 @@ const GetAddress = (props) => {
                     {showPoint ? <div className={styles.poi_list} ref={pointListRef} onScroll={pointListScroll}>
                         {pointList.map((poiItem, poiIndex) => {
                             return <div key={poiIndex} className={styles.poi_item} onClick={() => handleSelectPoint(poiItem)}>
-                                <p className={styles.poi_item_name}>{poiItem.name}</p>
+                                <RenderHighlight name={poiItem.name}></RenderHighlight>
                                 <p className={styles.poi_item_address}>{poiItem.address}</p>
                             </div>
                         })}

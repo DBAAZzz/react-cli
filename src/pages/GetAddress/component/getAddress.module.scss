@@ -107,6 +107,9 @@
             &_name {
                 font-size: 34px;
             }
+            &_key {
+                color: $themeColor;
+            }
             &_address {
                 @include ellipsisBasic(1);
                 margin-top: 10px;

@@ -1,7 +1,12 @@
 import React from 'react'
 import styles from './style.module.scss'
 
-const AddrManage = () => {
+const AddrManage = (props) => {
+
+    const addAddress = () => {
+        props.history.push('/addAddress')
+    }
+
     return <div className={styles.addrmanage}>
         <div className={styles.address}>
             <div className={styles.address_item}>
@@ -47,7 +52,7 @@ const AddrManage = () => {
                 </div>
             </div>
         </div>
-        <div className={styles.add_address_button}>
+        <div className={styles.add_address_button} onClick={addAddress}>
             <span className={styles.add_text}>添加地址</span>
         </div>
     </div>
