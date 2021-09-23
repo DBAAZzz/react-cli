@@ -22,6 +22,9 @@ module.exports = () => {
             path: path.resolve(__dirname, './dist'),
             filename: 'js/[name].[contenthash:8].js',
         },
+        performance: {
+            hints: false
+        },
         optimization: {
             moduleIds: 'deterministic', // 默认 根据模块名称生成简短的hash值
             chunkIds: 'deterministic',
