@@ -6,6 +6,7 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
     "serve": "cross-env NODE_ENV=development webpack serve",
+    "jenkins-build": "cross-env NODE_ENV=production IS_JENKINS=true webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
