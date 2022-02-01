@@ -1,9 +1,13 @@
 {
     "presets": [
         "@babel/preset-react",
-        ["@babel/preset-env", {
-            "useBuiltIns":"usage"
-        }]
+        [
+            "@babel/preset-env",
+            {
+                "useBuiltIns": "usage",
+                "corejs": "2"
+            }
+        ]
     ],
     "plugins": [
         "@babel/plugin-transform-react-jsx"
