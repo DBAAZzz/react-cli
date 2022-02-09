@@ -11,7 +11,16 @@ const serviceNavList = [
     '帮助与反馈', '客服中心', '垃圾分类'
 ]
 
-function My() {
+
+const My = (props) => {
+    function navToAddress(index) {
+        console.log(index)
+        if (index == 0) {
+            props.history.push('/addrmanage')
+        }
+
+    }
+
     return (
         <div className={styles.my}>
             {/* 个人信息 */}
@@ -21,7 +30,7 @@ function My() {
                 <p className={styles.user_name}>chen108322</p>
             </div>
             <div className={`${styles.container_body} ${styles.assets}`}>
-                
+
             </div>
             {/* 常用功能 */}
             <div className={`${styles.container_body} ${styles.common_use}`}>
@@ -62,7 +71,7 @@ function My() {
                 <p className={`${styles.container_label}`}>更多推荐</p>
                 <div className={`${styles.more_recommand_list}`}>
                     {recommandNavList.map((navItem, index) => {
-                        return <div key={index} className={styles.nav_item}>
+                        return <div key={index} className={styles.nav_item} onClick={() => navToAddress(index)} >
                             <div className={styles.nav_item_pic}></div>
                             <span className={styles.nav_item_label}>{navItem}</span>
                         </div>
