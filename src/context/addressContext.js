@@ -1,4 +1,4 @@
 import React from 'react'
-const themeContext = React.createContext('red')
+const themeContext = React.createContext('')
 
 export default themeContext

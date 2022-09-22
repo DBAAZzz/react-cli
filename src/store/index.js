@@ -1,10 +1,10 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { countReducer, todoListReducer } from './reducer'
+import { addressReducer } from './reducer'
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
 
-const allReducer = combineReducers({ countReducer, todoListReducer })
+const allReducer = combineReducers({ addressReducer })
 
 const store = createStore(allReducer, composeWithDevTools(
     applyMiddleware(thunk)

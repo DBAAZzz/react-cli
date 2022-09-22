@@ -1,0 +1,131 @@
+@charset "UTF-8";
+
+.home {
+    height: 100%;
+    overflow: auto;
+    overflow-x: hidden;
+    background: $pageBackgroundColor;
+}
+.floor {
+    position: relative;
+    margin-top: -20px;
+    background: #fff;
+    border-radius: 30px 30px 0 0;
+}
+
+.search {
+    padding: 20px 0;
+    background: #fff;
+    border-radius: 30px 30px 0 0;
+    &_box {
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin: 0 30px;
+        height: 64px;
+        border: 4px solid $themeColor;
+        border-radius: 80px;
+        box-sizing: border-box;
+        &_icon {
+            margin: 0 12px;
+            font-size: 40px;
+        }
+        &_input {
+            color: $ignoreColor;
+        }
+        &_button {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: -2px;
+            right: -2px;
+            bottom: -2px;
+            width: 120px;
+            background: $themeColor;
+            border-radius: 80px;
+            &_text {
+                font-size: 30px;
+                color: $baseColor;
+            }
+        }
+    }
+}
+
+.fill_search {
+    height: 104px;
+}
+
+.search_fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0;
+    z-index: 1;
+}
+
+.tab {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 30px;
+    margin-top: 30px;
+    &_item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 16px 0;
+        justify-content: space-between;
+        width: calc(100% / 5);
+        height: 100px;
+    }
+    &_main_item {
+        height: 120px;
+    }
+    .tab_small_img {
+        width: 50px;
+        height: 50px;
+        background: blue;
+    }
+    .tab_big_img {
+        width: 80px;
+        height: 80px;
+        background: chartreuse;
+    }
+    .tab_label {
+        font-size: 26px;
+        color: $subColor;
+    }
+}
+.like_text {
+    margin-top: 20px;
+    padding: 0 30px;
+    font-size: 36px;
+    font-weight: bold;
+}
+.select {
+    display: flex;
+    margin: 10px 30px 0 30px;
+    padding: 14px 0;
+    font-size: 28px;
+    overflow: auto;
+    &::-webkit-scrollbar {
+        height: 0;
+        background-color: transparent;
+    }
+    &_item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-right: 20px;
+        width: 180px;
+        height: 64px;
+        border-radius: 10px;
+        background: #fff;
+    }
+    &_active_item {
+        font-weight: bold;
+        background: $themeColor;
+    }
+}

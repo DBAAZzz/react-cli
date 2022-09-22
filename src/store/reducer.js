@@ -1,27 +1,17 @@
-import { ADD, REDUCE } from './actionType'
+import { SETADDRESS, CLEARADDRESS } from './actionType'
 
-const defaultState = {
-    count: 0
-}
-const listState = {
-    list: [1, 2]
-}
-export const countReducer = (state = defaultState, action) => {
-    let newState = JSON.parse(JSON.stringify(state))
-    switch (action.type) {
-        case ADD: newState.count = state.count + 1;
-            return newState;
-        case REDUCE: newState.count = state.count - 1;
-            return newState;
-        default: return newState
-    }
+const addressState = {
+    address: ''
 }
 
-export const todoListReducer = (state = listState, action) => {
+export const addressReducer = (state = addressState, action)  => {
     let newState = JSON.parse(JSON.stringify(state))
     switch (action.type) {
-        case 'realPush': 
-            newState.list = [1, 2, 3]
+        case SETADDRESS: 
+            newState.address = action.value
+            return newState
+        case CLEARADDRESS: 
+            newState.address = ''
             return newState
         default: return newState
     }

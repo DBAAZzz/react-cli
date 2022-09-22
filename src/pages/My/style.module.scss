@@ -1,0 +1,124 @@
+@charset "UTF-8";
+
+$userHeight: 100px;
+
+@mixin navRank($childNum: 4) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    flex-basis: calc(100% / #{$childNum});
+}
+
+.container_label {
+    font-size: 30px;
+    font-weight: bold;
+}
+.container_body {
+    margin: 20px 30px 0 30px;
+    padding: 24px;
+    background: #fff;
+    border-radius: 16px;
+}
+
+.my {
+    height: 100%;
+    background: $pageBackgroundColor;
+    font-size: $baseColor;
+    overflow: auto;
+    overflow-x: hidden;
+}
+.user {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0 30px;
+    height: $userHeight;
+    background: $pageBackgroundColor;
+    &_head_pic {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: blue;
+    }
+    &_name {
+        margin-left: 20px;
+        font-size: 34px;
+        font-weight: bold;
+    }
+}
+
+.assets {
+    margin-top: $userHeight;
+    height: 120px;
+    background: #2f3e46;
+}
+
+/* 常用功能 */
+.common_use {
+    &_main {
+        display: flex;
+        padding: 40px 0 16px 0;
+        &_item {
+            @include navRank(4);
+            height: 100px;
+        }
+        .common_pic {
+            width: 50px;
+            height: 50px;
+            background: burlywood;
+        }
+        .common_label {
+            font-size: 26px;
+        }
+    }
+}
+
+.my_serice {
+    &_list {
+        display: flex;
+        flex-wrap: wrap;
+        display: flex;
+        padding: 24px 0 16px 0;
+    }
+    .nav_item {
+        @include navRank(4);
+        margin: 20px 0;
+        height: 100px;
+        &_pic {
+            width: 50px;
+            height: 50px;
+            background: blue;
+        }
+        &_label {
+            font-size: 24px;
+        }
+    }
+}
+
+.more_recommand {
+    margin-bottom: 40px;
+    &_list {
+        display: flex;
+        flex-wrap: wrap;
+        display: flex;
+        padding: 24px 0 16px 0;
+    }
+    .nav_item {
+        @include navRank(4);
+        margin: 20px 0;
+        height: 100px;
+        &_pic {
+            width: 50px;
+            height: 50px;
+            background: blue;
+        }
+        &_label {
+            font-size: 24px;
+        }
+    }
+}
+

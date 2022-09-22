@@ -1,11 +1,17 @@
-import { ADD, REDUCE } from './actionType'
-export const addNumAc = () => {
-    return {
-        type: ADD
-    }
+import store from './index'
+import { SETADDRESS, CLEARADDRESS } from './actionType'
+
+export const setAddressAc = (address) => {
+    store.dispatch({
+        type: SETADDRESS,
+        value: address
+    })
 }
-export const reduceNumAc = () => {
-    return {
-        type: REDUCE
-    }
+export const clearAddressAc = () => {
+    store.dispatch({
+        type: CLEARADDRESS
+    })
 }
+
+
+

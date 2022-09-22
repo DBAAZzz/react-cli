@@ -5,32 +5,66 @@ import {
     Switch,
     Redirect
 } from 'react-router-dom';
-import Home from '../views/Home'
-import User from '../views/User'
-import OtherPage from '../views/Other'
+import loadable from '@/utils/loadable'
+
+const Login = loadable(() => import(/* webpackChunkName: 'Login' */ '@/pages/Login'))
+const Layout = loadable(() => import(/* webpackChunkName: 'layout' */ '@/pages/Layout'))
+const ShopInfo = loadable(() => import(/* webpackChunkName: 'shopinfo' */ '@/pages/ShopInfo'))
+const AddrManage = loadable(() => import(/* webpackChunkName: 'addrmanage' */ '@/pages/AddrManage'))
+const GetAddress = loadable(() => import(/* webpackChunkName: 'getAddress' */ '@/pages/GetAddress'))
+const AddAddress = loadable(() => import(/* webpackChunkName: 'addAddress' */ '@/pages/AddAddress'))
 
 const routes = [
     {
-        path: "/home",
-        component: Home
+        path: '/home',
+        component: Layout,
     },
     {
-        path: "/user",
-        component: User
+        path: '/statistics',
+        component: Layout,
+        checkAuth: true
     },
     {
-        path: "/other",
-        component: OtherPage
+        path: '/order',
+        component: Layout
+    },
+    {
+        path: '/my',
+        component: Layout
+    },
+    {
+        path: '/shopinfo',
+        component: ShopInfo
+    },
+    {
+        path: '/addrmanage',
+        component: AddrManage
+    },
+    {
+        path: '/addAddress',
+        component: AddAddress
+    },
+    {
+        path: '/getAddress',
+        component: GetAddress
     }
 ];
+
+// 判断是否有登录
+let authenticate = () => {
+    return localStorage.getItem('login')
+}
 
 function RouteWithSubRoutes(route) {
     return (
         <Route
             path={route.path}
             render={props => (
-                // pass the sub-routes down to keep nesting
-                <route.component {...props} routes={route.routes} />
+                route.checkAuth && !authenticate() ? <Redirect to={{
+                    pathname: '/login',
+                    state: { from: props.location }
+                }}>
+                </Redirect> : <route.component {...props} routes={route.routes} />
             )}
         />
     );
@@ -39,9 +73,12 @@ function RouteWithSubRoutes(route) {
 const BasicRoute = () => (
     <Router>
         <Switch>
-            <Route path='/' exact render={() => (
-                <Redirect to='/home' />
+            <Route exact path="/" render={() => (
+                <Redirect to="/home"></Redirect>
             )} />
+            <Route exact path="/login">
+                <Login></Login>
+            </Route>
             {routes.map((route, i) => (
                 <RouteWithSubRoutes key={i} {...route} />
             ))}

@@ -1,0 +1,91 @@
+@charset "UTF-8";
+
+.addaddress {
+    height: 100vh;
+    padding: 0 30px;
+    background: $pageBackgroundColor;
+    overflow: auto;
+    &_form {
+        margin-top: 100px;
+        padding: 0 30px;
+        background: #fff;
+        overflow: auto;
+        &_item {
+            @include one-pix-line("bottom", #efefef);
+            display: flex;
+            align-items: center;
+            padding: 30px 0;
+            &:last-child {
+                border: none;
+            }
+            .lable {
+                flex-shrink: 0;
+                width: 120px;
+                font-size: 30px;
+                font-weight: bold;
+            }
+            .input {
+                flex-grow: 1;
+                height: 60px;
+                font-size: 30px;
+                color: $baseColor;
+                border: none;
+                outline: none;
+                &::-webkit-input-placeholder {
+                    color: $ignoreColor;
+                    font-size: 30px;
+                }
+            }
+        }
+        &_submit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 50px auto 40px auto;
+            width: 320px;
+            height: 80px;
+            background: $themeColor;
+            border-radius: 60px;
+            cursor: pointer;
+            &_text {
+                font-size: 30px;
+                color: #fff;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.tag_container {
+    display: flex;
+    .tag_item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 20px;
+        padding: 0 30px;
+        height: 54px;
+        font-size: 26px;
+        border-radius: 8px;
+    }
+    .tag_item_normal {
+        @include one-pix-line("all", #efefef);
+        color: $baseColor;
+    }
+    .tag_item_active {
+        @include one-pix-line("all", $themeColor);
+        color: $themeColor;
+    }
+}
+
+.select_container {
+    display: flex;
+    font-size: 30px;
+    .address_placeholder {
+        color: $ignoreColor;
+    }
+    .address_value {
+        @include ellipsisBasic(1);
+        color: $baseColor;
+    }
+}

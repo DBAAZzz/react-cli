@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+.layout {
+    display: flex;
+}
+.main {
+    display: block;
+    width: 100%;
+    height: calc(100vh - #{$navHeight});
+    overflow: auto;
+    overflow-x: hidden;
+}   

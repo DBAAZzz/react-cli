@@ -1,0 +1,39 @@
+/* 首页底部导航栏的高度 */
+$navHeight: 100px;
+
+$baseColor: #333;
+$subColor: #666;
+$ignoreColor: #999;
+$themeColor: #86ffc1;
+$themeBgColor: #bdffdd;
+$pageBackgroundColor: #f6f6f6;
+$keyColor: #ff6f3c;
+$keyBgColor: #ffe7d9;
+$importColor: #f94144;
+
+/* 超出隐藏 */
+@mixin ellipsisBasic($clamp: 2) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $clamp;
+}
+
+/* 1像素线 */
+@mixin one-pix-line($pos: "bottom", $color: $subColor, $style: solid) {
+    $prop: border-#{$pos};
+    @if $pos == "all" {
+        $prop: border;
+    }
+    #{$prop}: 1px $style $color;
+    @media (min-resolution: 2dppx) {
+        #{$prop}: 0.5px $style $color;
+    }
+    @media (min-resolution: 3dppx) {
+        #{$prop}: 0.333333px $style $color;
+    }
+    @media (min-resolution: 4dppx) {
+        #{$prop}: 0.25px $style $color;
+    }
+}

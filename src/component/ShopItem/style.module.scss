@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+
+$lineTop: 4px;
+.shop_item {
+    display: flex;
+    margin-bottom: 16px;
+    padding: 24px;
+    background: #fff;
+}
+
+.shop_pic {
+    flex-shrink: 0;
+    width: 200px;
+    height: 200px;
+    margin-right: 20px;
+    border-radius: 20px;
+    background: blue;
+}
+
+.shop_info {
+    flex-grow: 1;
+    color: $baseColor;
+    &_name {
+        font-size: 34px;
+        font-weight: bold;
+        color: $baseColor;
+        @include ellipsisBasic(1);
+    }
+    &_detail {
+        position: relative;
+        display: flex;
+        margin-top: $lineTop;
+        font-size: 24px;
+        .time {
+            display: inline-block;
+            position: absolute;
+            right: 0;
+            color: $ignoreColor;
+        }
+        .number {
+            display: inline-block;
+            color: $keyColor;
+            margin-right: 16px;
+        }
+    }
+    &_key {
+        display: inline-flex;
+        align-items: center;
+        margin-top: $lineTop;
+        padding: 0 16px;
+        height: 40px;
+        color: $keyColor;
+        font-size: 24px;
+        background: $keyBgColor;
+        border-radius: 8px;
+    }
+    &_price {
+        font-size: 24px;
+        margin-top: $lineTop;
+        span:nth-child(1) {
+            display: inline-block;
+            margin-right: 16px;
+            color: $ignoreColor;
+        } 
+        span:nth-child(2) {
+            color: $keyColor;
+        }
+    }
+    &_disc {
+        margin-top: $lineTop;
+        font-size: 20px;
+        .info_tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 0 10px;
+            height: 30px;
+            border: 2px solid $importColor;
+            color: $importColor;
+            border-radius: 8px;
+        }
+    }
+}
